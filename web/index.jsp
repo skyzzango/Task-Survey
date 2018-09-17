@@ -8,13 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <html lang="ko">
 <head>
-	<%@include file="partials/head.jsp" %>
+	<%@include file="/partials/head.jsp" %>
 	<title>메인</title>
 </head>
 
 <body>
 
-<%@include file="partials/nav.jsp" %>
+<%@include file="/partials/nav.jsp" %>
 
 
 <div class="container">
@@ -27,7 +27,7 @@
 </div><!-- /.container -->
 
 
-<%@include file="partials/script.jsp" %>
+<%@include file="/partials/script.jsp" %>
 
 </body>
 </html>
