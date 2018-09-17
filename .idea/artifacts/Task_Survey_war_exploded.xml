@@ -7,6 +7,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="Task-Survey" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="application" name="jsoup-1.11" />
+        </element>
       </element>
     </root>
   </artifact>

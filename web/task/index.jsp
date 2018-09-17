@@ -9,7 +9,7 @@
 <html lang="ko">
 <head>
 	<%@include file="/partials/head.jsp" %>
-	<title>설문</title>
+	<title>Task</title>
 </head>
 
 <body>
@@ -20,44 +20,41 @@
 <div class="container">
 
 	<div class="starter-template">
-		<h1>설문 페이지</h1>
-		<div class="card" style="width: auto;">
-			<h5 class="card-header">Featured</h5>
-			<div class="card-body">
-				<h5 class="card-title">Card title</h5>
-				<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-				<div class="card" style="width: auto;">
-					<h5 class="card-header">Quiz01</h5>
-					<div class="card-body">
-						<h5 class="card-title">Card title Card title Card title ?</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-						<label>
-							<select class="custom-select" multiple>
-								<option selected>Open this select menu</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
+		<h1>Task Page</h1>
+		<br>
+		<form action="#" method="post">
+			<div class="card">
+				<h5 class="card-header">Quiz01</h5>
+				<div class="card-body">
+					<h5 class="card-title">title title title title</h5>
+					<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+					<br>
+					<div class="btn-group-vertical btn-group-md btn-group-toggle btn-block" data-toggle="buttons">
+						<label class="btn btn-outline-primary" style="text-align: left">
+							<input type="radio" name="options" id="option1" autocomplete="off">
+							선택1
+						</label>
+						<label class="btn btn-outline-primary" style="text-align: left">
+							<input type="radio" name="options" id="option2" autocomplete="off">
+							선택2
+						</label>
+						<label class="btn btn-outline-primary" style="text-align: left">
+							<input type="radio" name="options" id="option3" autocomplete="off">
+							선택3
+						</label>
+						<label class="btn btn-outline-primary" style="text-align: left">
+							<input type="radio" name="options" id="option4" autocomplete="off">
+							선택4
 						</label>
 					</div>
+					<br>
+					<br>
+					<button type="submit" class="btn btn-primary btn-block">Submit</button>
 				</div>
-				<div class="card" style="width: auto;">
-					<h5 class="card-header">Quiz02</h5>
-					<div class="card-body">
-						<h5 class="card-title">Card title Card title Card title ?</h5>
-						<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">Cras justo odio</li>
-							<li class="list-group-item">Dapibus ac facilisis in</li>
-							<li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-					</div>
-				</div>
-				<a href="#" class="btn btn-primary">button</a>
 			</div>
-		</div>
-
+		</form>
 	</div>
+
 
 </div><!-- /.container -->
 
