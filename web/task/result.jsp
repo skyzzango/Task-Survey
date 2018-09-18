@@ -1,11 +1,11 @@
 <%@ page import="task.TaskDto" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page import="task.Task" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: skyzz
-  Date: 2018-09-17
-  Time: 오후 1:11
+  Date: 2018-09-18
+  Time: 오후 8:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
@@ -17,12 +17,16 @@
 	if (taskList.size() < 2) {
 		taskList.addAll(Task.createTasks());
 	}
+	taskList.remove(0);
 	session.setAttribute("taskList", taskList);
+	String title = request.getParameter("title");
+	String answer = request.getParameter("answer");
+	boolean result = title.equals(answer);
 %>
 <html lang="ko">
 <head>
 	<%@include file="/partials/head.jsp" %>
-	<title>메인</title>
+	<title>Task</title>
 </head>
 
 <body>
@@ -33,14 +37,16 @@
 <div class="container">
 
 	<div class="starter-template">
-		<h1>메인 페이지</h1><br>
-
-		<label class="sr-only" for="title">
-			<input type="text" class="form-control" name="title" id="title" value="<%=taskList%>">
-		</label>
-
-		<a class="btn btn-info" href="/task/" role="button">문제 풀기</a>
+		<h1>Result Page</h1><br>
+		<% if (result) { %>
+		<h3>정답 입니다.</h3>
+		<% } else { %>
+		<h3>오답 입니다.</h3>
+		<% } %>
+		<br>
+		<a class="btn btn-info" href="/task/" role="button">다음문제</a>
 	</div>
+
 
 </div><!-- /.container -->
 
