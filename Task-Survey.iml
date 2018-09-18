@@ -21,5 +21,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.33" level="application_server_libraries" />
     <orderEntry type="library" name="jsoup-1.11" level="application" />
+    <orderEntry type="library" name="gson-2.8" level="application" />
   </component>
 </module>
