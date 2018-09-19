@@ -22,10 +22,9 @@
 
 <body onload="myFunction()" style="margin:0;">
 
-<div id="loader"></div>
-
 <%@include file="/partials/nav.jsp" %>
 
+<div id="loader"></div>
 
 <div class="container">
 	<div style="display:none;" id="myDiv" class="animate-bottom">
@@ -38,7 +37,7 @@
 			<h3>오답 입니다.</h3>
 			<% } %>
 			<br>
-			<a class="btn btn-outline-primary" href="/task/" role="button">다음문제</a>
+			<button type="button" class="btn btn-outline-primary" onclick="showLoad()">다음문제</button>
 		</div>
 	</div>
 
@@ -51,13 +50,20 @@
 	let myVar;
 
 	function myFunction() {
-		myVar = setTimeout(showPage, 1000);
+		myVar = setTimeout(showPage, 1);
 	}
 
 	function showPage() {
 		document.getElementById("loader").style.display = "none";
 		document.getElementById("myDiv").style.display = "block";
 	}
+
+	function showLoad() {
+		document.getElementById("loader").style.display = "block";
+		document.getElementById("myDiv").style.display = "none";
+		location.href="/task/"
+	}
+
 </script>
 </body>
 </html>

@@ -14,8 +14,10 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Task {
+	private static Random rand = new Random();
 
 	private static class LazyHolder {
 		static final Task INSTANCE = new Task();
@@ -35,8 +37,48 @@ public class Task {
 		return doc;
 	}
 
-	public List<TaskDto> createTasks() {
-		Random rand = new Random();
+	public List<MeTaskDto> createTaskMe() {
+		int num = rand.nextInt(356) + 1;
+		String pageUrl = "https://terms.naver.com/list.nhn?cid=60408&categoryId=59580&so=st3" +
+				".asc&viewType=&categoryType=&page=" + num;
+
+		Document pageDoc = getDocument(pageUrl + num);
+		if (pageDoc == null) {
+			System.out.println("Error: getDocument(pageDoc) == null");
+			return new ArrayList<>();
+		}
+		System.out.println("PageUrl: " + pageUrl + num);
+
+		return getTaskListMe(pageDoc);
+	}
+
+	private List<MeTaskDto> getTaskListMe(Document doc) {
+		List<MeTaskDto> list = new ArrayList<>();
+		Elements items = doc.select(".list_wrap .info_area");
+		for (int i = 0; i < items.size(); i++) {
+			MeTaskDto dto = new MeTaskDto();
+			String title = items.get(i).select("a").first().text();
+			String[] names = title.replace("]", "").split(" \\[");
+			dto.setTitle(names[0]);
+			dto.setLongTitle(names[1]);
+			dto.setDescription(items.get(i).select(".desc __ellipsis").text());
+			list.add(dto);
+		}
+
+		List<String> titles = list.stream()
+				.map(MeTaskDto::getTitle)
+				.collect(Collectors.toList());
+
+//		List<String> ass = titles.stream().forEach(a ->
+//						titles.stream()
+//						.filter(b -> !a.equals(b))
+//						.skip(rand.nextInt(titles.size() / 5))
+//						.limit(3)
+//						.collect(Collectors.toList()));
+		return list;
+	}
+
+	public List<TaskDto> createTaskIt() {
 		String mainUrl = "http://terms.tta.or.kr";
 		String pageUrl = mainUrl + "/wordDiscoverList.do?listPage=";
 
@@ -102,6 +144,7 @@ public class Task {
 		List<String> associated = new ArrayList<>();
 		String chartUrl = "http://terms.tta.or.kr/dictionary/dictionaryChart.do?word_seq=" + seq;
 		System.out.println("ChartUrl: " + chartUrl);
+		System.out.println();
 
 		try {
 			String response = Jsoup.connect(chartUrl)
@@ -128,6 +171,7 @@ public class Task {
 			System.out.println("검색어: " + obj2.get("name").getAsString());
 			System.out.println("전체| " + total + " / " + pass + " |통과");
 			System.out.println(associated);
+			System.out.println();
 			return new Pair<>(obj2.get("name").getAsString(), associated);
 		} catch (Exception e) {
 			System.out.println("Error: getAss Error (" + e.getMessage() + ")");

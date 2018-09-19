@@ -1,21 +1,20 @@
 <%@ page import="task.TaskDto" %>
+<%@ page import="java.util.Collections" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Collections" %><%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: skyzz
-  Date: 2018-09-17
-  Time: 오후 1:19
+  Date: 2018-09-19
+  Time: 오후 10:23
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@include file="/task/taskList.jsp" %>
+<%@include file="/task/meTaskList.jsp"%>
 <%
-	if (session.getAttribute("quiz") == null) session.setAttribute("quiz", 1);
+	if (session.getAttribute("meQuiz") == null) session.setAttribute("meQuiz", 1);
 	int num = (int) session.getAttribute("quiz");
-	session.setAttribute("quiz", num + 1);
+	session.setAttribute("meQuiz", num + 1);
 	List<String> results = new ArrayList<>();
-	int count = 1;
 %>
 <html lang="ko">
 <head>
@@ -33,11 +32,11 @@
 	<div style="display:none;" id="myDiv" class="animate-bottom">
 
 		<div class="starter-template">
-			<h1>Task Page</h1>
+			<h1>Medical Task Page</h1>
 			<br>
 			<form id="result" action="result.jsp" method="post">
 				<% for (int i = 0; i < 1; i++) {
-					TaskDto taskDto = taskList.get(0);
+					MeTaskDto taskDto = meTaskList.get(0);
 					String title = taskDto.getTitle();
 					results.add(title);
 					for (int j = 0; j < 3; j++) {

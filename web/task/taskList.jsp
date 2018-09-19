@@ -9,21 +9,21 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%
+	System.out.println("TaskList Run");
 	Task task = Task.getInstance();
 	List<TaskDto> taskList = new ArrayList<>();
-	if (session.getAttribute("taskList") != null) {
-		taskList.addAll((List<TaskDto>) session.getAttribute("taskList"));
+
+	if (session.getAttribute("taskList") == null) { taskList.addAll(task.createTaskIt()); }
+	taskList.addAll((List<TaskDto>) session.getAttribute("taskList"));
+	if (taskList.size() < 4) { taskList.addAll(task.createTaskIt()); }
+
+	System.out.println("TaskList Size: " + taskList.size());
+	System.out.print("TaskList Item: ");
+	for (TaskDto one : taskList) {
+		System.out.print("[" + one.getTitle() + "] ");
 	}
-	if (taskList.size() == 0) {
-		taskList.addAll(task.createTasks());
-	}
-	System.out.println("taskList1" + taskList);
-	if (taskList.size() < 3) {
-//		Thread t1 = new Thread(() -> {
-			taskList.addAll(task.createTasks());
-//		});
-//		t1.run();
-	}
+	System.out.println();
+	System.out.println();
+
 	session.setAttribute("taskList", taskList);
-	System.out.println("taskList2" + session.getAttribute("taskList").toString());
 %>

@@ -24,5 +24,7 @@
     <orderEntry type="library" name="gson-2.8" level="application" />
     <orderEntry type="library" name="mysql-connector-java-5.1.46" level="project" />
     <orderEntry type="library" name="tomcat-dbcp" level="project" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.46" level="project" />
+    <orderEntry type="library" name="tomcat-dbcp" level="project" />
   </component>
 </module>

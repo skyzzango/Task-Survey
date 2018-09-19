@@ -6,9 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-	session.setAttribute("quiz", 1);
-%>
 <html lang="ko">
 <head>
 	<%@include file="/partials/head.jsp" %>
@@ -17,17 +14,17 @@
 
 <body onload="myFunction()" style="margin:0;">
 
-<div id="loader"></div>
-
 <%@include file="/partials/nav.jsp" %>
 
+<div id="loader"></div>
 
 <div class="container">
 	<div style="display:none;" id="myDiv" class="animate-bottom">
 
 		<div class="starter-template">
 			<h1>메인 페이지</h1><br>
-			<a class="btn btn-outline-primary" href="/task/" role="button">문제 풀기</a>
+			<button type="button" class="btn btn-primary" onclick="showLoad('/task/')">문제 풀러 가기</button>
+			<button type="button" class="btn btn-primary" onclick="showLoad('/task/meTask.jsp')">문제 풀러 가기</button>
 		</div>
 	</div>
 
@@ -39,13 +36,20 @@
 	let myVar;
 
 	function myFunction() {
-		myVar = setTimeout(showPage, 1000);
+		myVar = setTimeout(showPage, 100);
 	}
 
 	function showPage() {
 		document.getElementById("loader").style.display = "none";
 		document.getElementById("myDiv").style.display = "block";
 	}
+
+	function showLoad(url) {
+		document.getElementById("loader").style.display = "block";
+		document.getElementById("myDiv").style.display = "none";
+		location.href = url;
+	}
+
 </script>
 </body>
 </html>
