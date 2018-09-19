@@ -1,7 +1,4 @@
-<%@ page import="task.TaskDto" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="task.Task" %>
-<%@ page import="java.util.List" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: skyzz
   Date: 2018-09-18
@@ -9,14 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@include file="/task/taskList.jsp" %>
 <%
-	List<TaskDto> taskList = new ArrayList<>();
-	if(session.getAttribute("taskList") != null) {
-		taskList.addAll((List<TaskDto>) session.getAttribute("taskList"));
-	}
-	if (taskList.size() < 2) {
-		taskList.addAll(Task.createTasks());
-	}
 	taskList.remove(0);
 	session.setAttribute("taskList", taskList);
 	String title = request.getParameter("title");
@@ -26,25 +17,29 @@
 <html lang="ko">
 <head>
 	<%@include file="/partials/head.jsp" %>
-	<title>Task</title>
+	<title>Result</title>
 </head>
 
-<body>
+<body onload="myFunction()" style="margin:0;">
+
+<div id="loader"></div>
 
 <%@include file="/partials/nav.jsp" %>
 
 
 <div class="container">
+	<div style="display:none;" id="myDiv" class="animate-bottom">
 
-	<div class="starter-template">
-		<h1>Result Page</h1><br>
-		<% if (result) { %>
-		<h3>정답 입니다.</h3>
-		<% } else { %>
-		<h3>오답 입니다.</h3>
-		<% } %>
-		<br>
-		<a class="btn btn-info" href="/task/" role="button">다음문제</a>
+		<div class="starter-template">
+			<h1>Result Page</h1><br>
+			<% if (result) { %>
+			<h3>정답 입니다.</h3>
+			<% } else { %>
+			<h3>오답 입니다.</h3>
+			<% } %>
+			<br>
+			<a class="btn btn-outline-primary" href="/task/" role="button">다음문제</a>
+		</div>
 	</div>
 
 
@@ -52,6 +47,17 @@
 
 
 <%@include file="/partials/script.jsp" %>
+<script>
+	let myVar;
 
+	function myFunction() {
+		myVar = setTimeout(showPage, 1000);
+	}
+
+	function showPage() {
+		document.getElementById("loader").style.display = "none";
+		document.getElementById("myDiv").style.display = "block";
+	}
+</script>
 </body>
 </html>

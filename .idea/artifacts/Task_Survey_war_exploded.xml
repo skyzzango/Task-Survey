@@ -10,6 +10,8 @@
         <element id="directory" name="lib">
           <element id="library" level="application" name="jsoup-1.11" />
           <element id="library" level="application" name="gson-2.8" />
+          <element id="library" level="project" name="tomcat-dbcp" />
+          <element id="library" level="project" name="mysql-connector-java-5.1.46" />
         </element>
       </element>
     </root>

@@ -22,5 +22,7 @@
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 8.5.33" level="application_server_libraries" />
     <orderEntry type="library" name="jsoup-1.11" level="application" />
     <orderEntry type="library" name="gson-2.8" level="application" />
+    <orderEntry type="library" name="mysql-connector-java-5.1.46" level="project" />
+    <orderEntry type="library" name="tomcat-dbcp" level="project" />
   </component>
 </module>

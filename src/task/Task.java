@@ -17,7 +17,13 @@ import java.util.stream.Collectors;
 
 public class Task {
 
-	private static Random rand = new Random();
+	private static class LazyHolder {
+		static final Task INSTANCE = new Task();
+	}
+
+	public static Task getInstance() {
+		return Task.LazyHolder.INSTANCE;
+	}
 
 	private static Document getDocument(String url) {
 		Document doc = null;
@@ -29,7 +35,8 @@ public class Task {
 		return doc;
 	}
 
-	public static List<TaskDto> createTasks() {
+	public List<TaskDto> createTasks() {
+		Random rand = new Random();
 		String mainUrl = "http://terms.tta.or.kr";
 		String pageUrl = mainUrl + "/wordDiscoverList.do?listPage=";
 
@@ -44,7 +51,7 @@ public class Task {
 		return getTaskList(pageDoc, 1);
 	}
 
-	private static List<TaskDto> getTaskList(Document doc, int num) {
+	private List<TaskDto> getTaskList(Document doc, int num) {
 		List<String> titles = new ArrayList<>();
 		Elements itemUrls = doc.select(".align_l a");
 		for (Element itemUrl : itemUrls) {
@@ -126,10 +133,6 @@ public class Task {
 			System.out.println("Error: getAss Error (" + e.getMessage() + ")");
 			return null;
 		}
-	}
-
-	public static void main(String[] args) {
-		createTasks();
 	}
 
 }
