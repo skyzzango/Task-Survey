@@ -1,24 +1,34 @@
 package task;
 
-public class TaskDTO {
-	private String head = "";
-	private String desc = "";
-	private String description = "";
+import java.util.List;
 
-	public String getHead() {
-		return head;
+public class TaskDto {
+	private String title;
+	private String seq;
+	private String description;
+	private List<String> associated;
+
+	public TaskDto(String title, String seq, String description, List<String> associated) {
+		this.title = title;
+		this.seq = seq;
+		this.description = description;
+		this.associated = associated;
 	}
 
-	public void setHead(String head) {
-		this.head = head;
+	public String getTitle() {
+		return title;
 	}
 
-	public String getDesc() {
-		return desc;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public void setDesc(String desc) {
-		this.desc = desc;
+	public String getSeq() {
+		return seq;
+	}
+
+	public void setSeq(String seq) {
+		this.seq = seq;
 	}
 
 	public String getDescription() {
@@ -29,12 +39,21 @@ public class TaskDTO {
 		this.description = description;
 	}
 
+	public List<String> getAssociated() {
+		return associated;
+	}
+
+	public void setAssociated(List<String> associated) {
+		this.associated = associated;
+	}
+
 	@Override
 	public String toString() {
-		return "TaskDTO{" +
-				"head='" + head + '\'' +
-				", desc='" + desc + '\'' +
-				", description='" + description + '\'' +
-				'}';
+		return "TaskDto{\n" +
+				"title='" + title + '\'' +
+				",\n seq='" + seq + '\'' +
+				",\n description='" + description + '\'' +
+				",\n associated=" + associated +
+				"\n}";
 	}
 }
